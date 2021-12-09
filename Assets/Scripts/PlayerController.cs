@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 0;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
+    public GameObject titleText;
 
     private Rigidbody rb;
     private int count; 
@@ -47,6 +48,11 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         rb.AddForce(movement * speed);
+
+        if(movementX > 0 || movementY > 0)
+        {
+            titleText.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
