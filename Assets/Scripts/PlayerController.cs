@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
     public GameObject titleText;
+    public AudioSource collect;
 
     private Rigidbody rb;
     private int count; 
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(movement * speed);
 
-        if(movementX > 0 || movementY > 0)
+        if(movementX > 0 || movementY > 0 || movementX < 0 || movementY < 0)
         {
             titleText.SetActive(false);
         }
@@ -61,6 +62,9 @@ public class PlayerController : MonoBehaviour
         { 
             other.gameObject.SetActive(false);
             count = count + 1;
+            {
+                collect.Play();
+            }
 
             SetCountText();
         }
